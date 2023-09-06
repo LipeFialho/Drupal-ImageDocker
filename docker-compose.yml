@@ -1,0 +1,41 @@
+# @author: Luiz Felipe Diogo Fialho Silva 
+# @copyright LFD Solucoes.
+
+version: '3.1'
+
+services:
+
+  drupal:
+    image: ${APP_BASEIMAGE}
+    container_name: ${APP_CONTAINER_NAME}
+    ports:
+      - ${HOST_PORT}:${APP_PORT}
+    volumes:
+      - ".${HOST_APPDIR}:${APP_DIR}"
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+    
+  db:
+    image: mysql:latest
+    ports:
+      - "3306:${DB_PORT}"
+    volumes:
+      # - ./${DB_DATA_DIR}:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+   
+  adminer:
+    image: adminer
+    container_name: ${ADM_CONTAINER_NAME}
+    volumes:
+       - "./${HOST_UPLOAD_CONFFILE}:${ADM_UPLOAD_CONFFILE}"
+    ports:
+      - ${HOST_ADM_PORT}:${ADM_PORT}
+    
+
+    restart: always

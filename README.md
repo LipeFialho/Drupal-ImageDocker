@@ -1,6 +1,5 @@
-# |||||||||||||||||||||||||||||||||||||||||||
-# || Autor: Luiz Felipe Diogo Fialho Silva ||
-# |||||||||||||||||||||||||||||||||||||||||||
+# Autor: Luiz Felipe Diogo Fialho Silva
+
 
 # Buildando a imagem
 - No arquivo "dockerfile", na parte "FROM", conferir se a versão da imagem drupal (valor após os ":") é a versão desejada;
